@@ -4,15 +4,15 @@ services:
     image: bkimminich/juice-shop
     ports:
         - '3000:3000'
-  cpnginx-reverse-proxy:
+  appsec:
     ports:
       - '80:80'
     ipc: host
     image: checkpoint/cloudguard-appsec-standalone
     volumes:
-      - ./cpnginx-reverse-proxy/default:/etc/nginx/conf.d/default.conf
-      - ./cpnginx-reverse-proxy/data:/etc/cp/data
-      - ./cpnginx-reverse-proxy/conf:/etc/cp/conf
-      - ./cpnginx-reverse-proxy/logs:/var/log/nano_agent
-      - ./cpnginx-reverse-proxy/logs:/var/log/nano_agent     
-    command: ["/cp-nano-agent", "--token", "$TOKEN"]
+      - ./reverse-proxy/default:/etc/nginx/conf.d/default.conf
+      - ./reverse-proxy/data:/etc/cp/data
+      - ./reverse-proxy/conf:/etc/cp/conf
+      - ./reverse-proxy/logs:/var/log/nano_agent
+      - ./reverse-proxy/logs:/var/log/nano_agent     
+    command: ["/cloudguard-appsec-standalone", "--token", "$TOKEN"]
