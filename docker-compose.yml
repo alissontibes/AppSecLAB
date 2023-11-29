@@ -11,8 +11,7 @@ services:
     image: checkpoint/cloudguard-appsec-standalone
     volumes:
       - ./reverse-proxy/default:/etc/nginx/conf.d/default.conf
-      - ./reverse-proxy/data:/etc/cp/data
-      - ./reverse-proxy/conf:/etc/cp/conf
-      - ./reverse-proxy/logs:/var/log/nano_agent
-      - ./reverse-proxy/logs:/var/log/nano_agent     
+      - ./cloudguard-appsec-standalone/data:/etc/cp/data
+      - ./cloudguard-appsec-standalone/conf:/etc/cp/conf
+      - ./cloudguard-appsec-standalone/logs:/var/log/nano_agent   
     command: ["/cloudguard-appsec-standalone", "--token", "$TOKEN"]
